@@ -29,7 +29,7 @@ public class ProductResource {
 
     static ProductCurrentPrice toResource(Price price) {
       ProductCurrentPrice currentPrice = new ProductCurrentPrice();
-      currentPrice.setCurrencyCode(price.toString());
+      currentPrice.setCurrencyCode(price.getCurrencyCode().name());
       currentPrice.setValue(price.getValue());
       return currentPrice;
     }

@@ -4,6 +4,8 @@ package com.myretail.org.products.domain;
 import com.myretail.org.products.api.IProductResourceService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 /**
  * Provides service methods for interacting with products
  */
@@ -12,7 +14,7 @@ public class ProductEntityService implements IProductResourceService {
 
   @Override
   public ProductEntity getProduct(int id) {
-    return null;
+    return new ProductEntity("test", new Price(BigDecimal.TEN, CurrencyCode.CAD));
   }
 
   @Override

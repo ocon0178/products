@@ -3,6 +3,7 @@ package com.myretail.org.products.api.swagger.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myretail.org.products.api.IProductResourceService;
 import com.myretail.org.products.api.swagger.model.Product;
+import com.myretail.org.products.api.swagger.resources.ProductResource;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +34,10 @@ public class ProductsApiController implements ProductsApi {
     }
 
     public ResponseEntity<Product> productsIdGet(@ApiParam(value = "Numeric id of the product to get",required=true) @PathVariable("id") Integer id) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Product>(HttpStatus.NOT_IMPLEMENTED);
+        return ResponseEntity.ok(ProductResource.toResource(productService.getProduct(id)));
     }
 
     public ResponseEntity<Void> productsIdPut(@ApiParam(value = "Numeric id of the product to get",required=true) @PathVariable("id") Integer id,@ApiParam(value = "updates the product in the data store"  )  @Valid @RequestBody Product body) {
-        String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 

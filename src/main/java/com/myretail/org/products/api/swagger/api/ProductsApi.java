@@ -4,6 +4,7 @@ package com.myretail.org.products.api.swagger.api;
 import com.myretail.org.products.api.swagger.model.InlineResponse400;
 import com.myretail.org.products.api.swagger.model.Product;
 import io.swagger.annotations.*;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +28,7 @@ public interface ProductsApi {
         @ApiResponse(code = 400, message = "Invalid request", response = InlineResponse400.class),
         @ApiResponse(code = 500, message = "Internal Server Error", response = InlineResponse400.class) })
     @RequestMapping(value = "/products/{id}",
-        produces = { "*/*" }, 
+        produces = { MediaType.APPLICATION_JSON_VALUE },
         method = RequestMethod.GET)
     ResponseEntity<Product> productsIdGet(@ApiParam(value = "Numeric id of the product to get", required = true) @PathVariable("id") Integer id);
 
