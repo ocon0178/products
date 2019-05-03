@@ -6,6 +6,11 @@ package com.myretail.org.products.domain;
 public class ProductEntity {
 
   /**
+   * Unique identifier of the product
+   */
+  private final int id;
+
+  /**
    * The name of the product
    */
   private final String name;
@@ -15,7 +20,8 @@ public class ProductEntity {
    */
   private final Price price;
 
-  public ProductEntity(String name, Price price) {
+  public ProductEntity(int id, String name, Price price) {
+    this.id = id;
     this.name = name;
     this.price = price;
   }
@@ -26,5 +32,9 @@ public class ProductEntity {
 
   public Price getPrice() {
     return price;
+  }
+
+  public int getId() {
+    return id;
   }
 }

@@ -14,7 +14,7 @@ public class ProductEntityService implements IProductResourceService {
 
   @Override
   public ProductEntity getProduct(int id) {
-    return new ProductEntity("test", new Price(BigDecimal.TEN, CurrencyCode.CAD));
+    return new ProductEntity(id, "test", new Price(BigDecimal.TEN, CurrencyCode.CAD));
   }
 
   @Override

@@ -32,11 +32,11 @@ public class ProductsApiControllerIntegrationTest {
     @Test
     public void getProductsById() {
         //given
-        int id = 1;
+        Integer id = 1;
         String name = "blah";
         BigDecimal value = BigDecimal.TEN;
         CurrencyCode currencyCode = CurrencyCode.CAD;
-        ProductEntity productEntity = new ProductEntity(name, new Price(value, currencyCode));
+        ProductEntity productEntity = new ProductEntity(id, name, new Price(value, currencyCode));
         when(productResourceService.getProduct(id)).thenReturn(productEntity);
         //when
         ResponseEntity<Product> responseEntity = api.productsIdGet(id);
@@ -47,6 +47,7 @@ public class ProductsApiControllerIntegrationTest {
         assertEquals(response.getName(), name);
         assertEquals(CurrencyCode.valueOf(response.getCurrentPrice().getCurrencyCode()), currencyCode);
         assertEquals(response.getCurrentPrice().getValue(), value);
+        assertEquals(response.getId(),id);
     }
 
     @Test

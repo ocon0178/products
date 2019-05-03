@@ -12,13 +12,14 @@ import com.myretail.org.products.domain.ProductEntity;
 public class ProductResource {
 
   public static ProductEntity toDomain(Product product) {
-    return new ProductEntity(product.getName(), ProductCurrentPriceResource.toDomainObject(product.getCurrentPrice()));
+    return new ProductEntity(product.getId(), product.getName(), ProductCurrentPriceResource.toDomainObject(product.getCurrentPrice()));
   }
 
   public static Product toResource(ProductEntity productEntity) {
     Product product = new Product();
     product.setCurrentPrice(ProductCurrentPriceResource.toResource(productEntity.getPrice()));
     product.setName(productEntity.getName());
+    product.setId(productEntity.getId());
     return product;
   }
 

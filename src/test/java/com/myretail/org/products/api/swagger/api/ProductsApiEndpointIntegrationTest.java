@@ -39,11 +39,11 @@ public class ProductsApiEndpointIntegrationTest {
   }
 
   @Test
-  public void exampleTest() throws Exception {
+  public void productByIdEndpointFetchesProductJSON() throws Exception {
     //given
-    String expected = "{\"name\":\"blah\",\"currentPrice\":{\"value\":99.66,\"currency_code\":\"USD\"}}";
+    String expected = "{\"id\":15117729,\"name\":\"blah\",\"current_price\":{\"value\":99.66,\"currency_code\":\"USD\"}}";
     int id = 15117729;
-    when(productResourceService.getProduct(id)).thenReturn(new ProductEntity("blah",
+    when(productResourceService.getProduct(id)).thenReturn(new ProductEntity(id, "blah",
         new Price(BigDecimal.valueOf(99.66), CurrencyCode.USD)));
     //then
     this.mvc.perform(get("/products/{id}", id)).andExpect(status().isOk()).andExpect(content().json(expected,true));
