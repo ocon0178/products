@@ -1,14 +1,19 @@
 package com.myretail.org.products.domain;
 
+import org.springframework.data.annotation.Id;
+
+import java.util.Objects;
+
 /**
  * Value object to store product information
  */
 public class ProductEntity {
 
   /**
-   * Unique identifier of the product
+   * Unique identifier of the product.  Will be null when creating  new product.
    */
-  private final int id;
+  @Id
+  private final Integer id;
 
   /**
    * The name of the product
@@ -20,10 +25,25 @@ public class ProductEntity {
    */
   private final Price price;
 
-  public ProductEntity(int id, String name, Price price) {
+  public ProductEntity(Integer id, String name, Price price) {
     this.id = id;
     this.name = name;
     this.price = price;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ProductEntity that = (ProductEntity) o;
+    return id.equals(that.id) &&
+        name.equals(that.name) &&
+        price.equals(that.price);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, price);
   }
 
   public String getName() {

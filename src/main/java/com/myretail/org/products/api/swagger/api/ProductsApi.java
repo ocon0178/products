@@ -29,7 +29,7 @@ public interface ProductsApi {
     @RequestMapping(value = "/products/{id}",
         produces = { MediaType.APPLICATION_JSON_VALUE },
         method = RequestMethod.GET)
-    ResponseEntity<Product> productsIdGet(@ApiParam(value = "Numeric id of the product to get", required = true) @PathVariable("id") Integer id);
+    ResponseEntity<Product> productsIdGet(@ApiParam(value = "Numeric id of the product to get", required = true) @PathVariable("id") Integer id) throws NotFoundException;
 
 
     @ApiOperation(value = "", nickname = "productsIdPut", notes = "Updates the product by its unique id", tags={  })

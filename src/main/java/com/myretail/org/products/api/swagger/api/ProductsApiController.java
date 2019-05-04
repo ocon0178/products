@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myretail.org.products.api.IProductResourceService;
 import com.myretail.org.products.api.swagger.model.Product;
 import com.myretail.org.products.api.swagger.resources.ProductResource;
+import com.myretail.org.products.domain.EntityNotFoundException;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -24,25 +26,34 @@ import javax.validation.Valid;
 @Controller
 public class ProductsApiController implements ProductsApi {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductsApiController.class);
+  private static final Logger log = LoggerFactory.getLogger(ProductsApiController.class);
 
-    private final ObjectMapper objectMapper;
-    private final HttpServletRequest request;
-    private final IProductResourceService productService;
+  private final ObjectMapper objectMapper;
+  private final HttpServletRequest request;
+  private final IProductResourceService productService;
 
-    @Autowired
-    public ProductsApiController(ObjectMapper objectMapper, HttpServletRequest request, IProductResourceService productService) {
-        this.objectMapper = objectMapper;
-        this.request = request;
-        this.productService = productService;
+  @Autowired
+  public ProductsApiController(ObjectMapper objectMapper, HttpServletRequest request, IProductResourceService productService) {
+    this.objectMapper = objectMapper;
+    this.request = request;
+    this.productService = productService;
+  }
+
+  public ResponseEntity<Product> productsIdGet(@ApiParam(value = "Numeric id of the product to get", required = true) @PathVariable("id") Integer id) throws NotFoundException {
+    try {
+      return ResponseEntity.ok(ProductResource.toResource(productService.getProduct(id)));
+    } catch (EntityNotFoundException e) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     }
+  }
 
-    public ResponseEntity<Product> productsIdGet(@ApiParam(value = "Numeric id of the product to get",required=true) @PathVariable("id") Integer id) {
-        return ResponseEntity.ok(ProductResource.toResource(productService.getProduct(id)));
+  public ResponseEntity<Void> productsIdPut(@ApiParam(value = "Numeric id of the product to get", required = true) @PathVariable("id") Integer id, @ApiParam(value = "updates the product in the data store") @Valid @RequestBody Product body) {
+    try {
+      productService.updateProduct(ProductResource.toDomain(body));
+    } catch (EntityNotFoundException e) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     }
-
-    public ResponseEntity<Void> productsIdPut(@ApiParam(value = "Numeric id of the product to get",required=true) @PathVariable("id") Integer id,@ApiParam(value = "updates the product in the data store"  )  @Valid @RequestBody Product body) {
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
 
 }

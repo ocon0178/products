@@ -2,7 +2,9 @@ package com.myretail.org.products.api.swagger.api;
 
 import com.myretail.org.products.api.IProductResourceService;
 import com.myretail.org.products.api.swagger.model.Product;
+import com.myretail.org.products.api.swagger.model.ProductCurrentPrice;
 import com.myretail.org.products.domain.CurrencyCode;
+import com.myretail.org.products.domain.EntityNotFoundException;
 import com.myretail.org.products.domain.Price;
 import com.myretail.org.products.domain.ProductEntity;
 import org.junit.Test;
@@ -30,7 +32,7 @@ public class ProductsApiControllerIntegrationTest {
     private IProductResourceService productResourceService;
 
     @Test
-    public void getProductsById() {
+    public void getProductsById() throws EntityNotFoundException, NotFoundException {
         //given
         Integer id = 1;
         String name = "blah";
@@ -54,8 +56,14 @@ public class ProductsApiControllerIntegrationTest {
     public void putProductsById() {
         Integer id = 2;
         Product body = new Product();
+        body.setId(id);
+        body.setName("blah");
+        ProductCurrentPrice currentPrice = new ProductCurrentPrice();
+        currentPrice.setValue(BigDecimal.ONE);
+        currentPrice.setCurrencyCode(CurrencyCode.USD.name());
+        body.setCurrentPrice(currentPrice);
         ResponseEntity<Void> responseEntity = api.productsIdPut(id, body);
-        assertEquals(HttpStatus.NOT_IMPLEMENTED, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
 }

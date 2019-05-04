@@ -4,21 +4,25 @@ package com.myretail.org.products.domain;
 import com.myretail.org.products.api.IProductResourceService;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-
 /**
  * Provides service methods for interacting with products
  */
 @Service
 public class ProductEntityService implements IProductResourceService {
 
-  @Override
-  public ProductEntity getProduct(int id) {
-    return new ProductEntity(id, "test", new Price(BigDecimal.TEN, CurrencyCode.CAD));
+  private final IProductRepository productRepository;
+
+  public ProductEntityService(IProductRepository productRepository) {
+    this.productRepository = productRepository;
   }
 
   @Override
-  public void updateProduct(int id, ProductEntity product) {
+  public ProductEntity getProduct(int id) throws EntityNotFoundException {
+    return productRepository.getById(id);
+  }
 
+  @Override
+  public void updateProduct(ProductEntity product) throws EntityNotFoundException {
+    productRepository.update(product);
   }
 }

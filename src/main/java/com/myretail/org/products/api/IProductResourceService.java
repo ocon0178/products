@@ -1,5 +1,6 @@
 package com.myretail.org.products.api;
 
+import com.myretail.org.products.domain.EntityNotFoundException;
 import com.myretail.org.products.domain.ProductEntity;
 
 /**
@@ -12,13 +13,12 @@ public interface IProductResourceService {
    * @param id unique identifier of the product
    * @return product entity
    */
-  ProductEntity getProduct(int id);
+  ProductEntity getProduct(int id) throws EntityNotFoundException;
 
   /**
-   * Updates the product by ID
-   * @param id unique identifier of the product
+   * Updates the product
    * @param product updated product information
    */
-  void updateProduct(int id, ProductEntity product);
+  void updateProduct(ProductEntity product) throws EntityNotFoundException;
 
 }
