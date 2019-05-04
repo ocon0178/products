@@ -18,7 +18,7 @@ public class ProductEntity {
   /**
    * The name of the product
    */
-  private final String name;
+  private String name;
 
   /**
    * Contains product price information
@@ -48,6 +48,10 @@ public class ProductEntity {
 
   public String getName() {
     return name;
+  }
+
+  void setName(String name) {
+    this.name = name;
   }
 
   public Price getPrice() {

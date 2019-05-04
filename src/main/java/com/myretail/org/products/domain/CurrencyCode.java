@@ -16,6 +16,6 @@ public enum CurrencyCode {
   /**
    * Euro
    */
-  EUD;
+  EUR
 
 }

@@ -11,14 +11,23 @@ import org.springframework.stereotype.Service;
 public class ProductEntityService implements IProductResourceService {
 
   private final IProductRepository productRepository;
+  private final IProductNameService productNameService;
 
-  public ProductEntityService(IProductRepository productRepository) {
+  public ProductEntityService(IProductRepository productRepository, IProductNameService productNameService) {
     this.productRepository = productRepository;
+    this.productNameService = productNameService;
   }
 
   @Override
   public ProductEntity getProduct(int id) throws EntityNotFoundException {
-    return productRepository.getById(id);
+    ProductEntity productEntity = productRepository.getById(id);
+    String name = "";
+    try {
+      name = productNameService.getProductName(id);
+    } catch (EntityNotFoundException ignored) {
+    }
+    productEntity.setName(name);
+    return productEntity;
   }
 
   @Override

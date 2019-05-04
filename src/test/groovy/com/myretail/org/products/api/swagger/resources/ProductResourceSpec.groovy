@@ -26,7 +26,7 @@ class ProductResourceSpec extends Specification {
 
   def "maps product domain to resource"() {
     given:
-    ProductEntity domain = new ProductEntity(987654321, "domain", new Price(1000.22, CurrencyCode.EUD))
+    ProductEntity domain = new ProductEntity(987654321, "domain", new Price(1000.22, CurrencyCode.EUR))
     when:
     def resource = ProductResource.toResource(domain)
     then:
@@ -34,7 +34,7 @@ class ProductResourceSpec extends Specification {
       id == 987654321
       name == "domain"
       currentPrice.value == 1000.22
-      currentPrice.currencyCode == CurrencyCode.EUD.name()
+      currentPrice.currencyCode == CurrencyCode.EUR.name()
     }
   }
 }
