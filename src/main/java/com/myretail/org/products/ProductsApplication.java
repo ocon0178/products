@@ -4,7 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
@@ -20,6 +21,11 @@ public class ProductsApplication implements CommandLineRunner {
 		if (args.length > 0 && args[0].equals("exitcode")) {
 			throw new ExitException();
 		}
+	}
+
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
 	}
 
 	class ExitException extends RuntimeException implements ExitCodeGenerator {
