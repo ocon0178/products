@@ -2,6 +2,9 @@ package com.myretail.org.products.api.swagger.api;
 
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ * Generated from swagger.  Class that represents api errors.
+ */
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-05-01T15:48:04.346Z[GMT]")
 @javax.xml.bind.annotation.XmlRootElement
 public class ApiResponseMessage {

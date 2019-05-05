@@ -21,7 +21,10 @@ public class MongoProductRepo implements IProductRepository {
 
   @Override
   public ProductEntity getById(int id) throws EntityNotFoundException {
-    return repo.findById(id).orElseThrow(() -> new EntityNotFoundException("blah"));
+    return repo.findById(id).orElseThrow(() -> {
+      String product = "Product with id [" + id + "] does not exist.";
+      return new EntityNotFoundException(product);
+    });
   }
 
   @Override

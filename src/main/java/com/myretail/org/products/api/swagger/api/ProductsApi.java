@@ -43,6 +43,6 @@ public interface ProductsApi {
         produces = { "*/*" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity<Void> productsIdPut(@ApiParam(value = "Numeric id of the product to get", required = true) @PathVariable("id") Integer id, @ApiParam(value = "updates the product in the data store") @Valid @RequestBody Product body);
+    ResponseEntity<Void> productsIdPut(@ApiParam(value = "Numeric id of the product to get", required = true) @PathVariable("id") Integer id, @ApiParam(value = "updates the product in the data store") @Valid @RequestBody Product body) throws NotFoundException;
 
 }

@@ -53,7 +53,7 @@ public class ProductsApiControllerIntegrationTest {
     }
 
     @Test
-    public void putProductsById() {
+    public void putProductsById() throws NotFoundException {
         Integer id = 2;
         Product body = new Product();
         body.setId(id);

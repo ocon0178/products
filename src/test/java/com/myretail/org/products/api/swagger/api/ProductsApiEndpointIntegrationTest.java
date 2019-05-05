@@ -8,8 +8,7 @@ import com.myretail.org.products.domain.ProductEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -27,8 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(ProductsApiController.class)
 public class ProductsApiEndpointIntegrationTest {
 
   @Autowired
@@ -36,6 +34,8 @@ public class ProductsApiEndpointIntegrationTest {
 
   @MockBean
   private IProductResourceService productResourceService;
+  private static final String NOT_FOUND = "Unable to find the product.";
+  private static final String NOT_FOUND_JSON = "{\"message\":\"" + NOT_FOUND + "\"}";
 
   @Test
   public void contextLoads() {
@@ -58,10 +58,9 @@ public class ProductsApiEndpointIntegrationTest {
   public void productByIdNotFound() throws Exception {
     //given
     int id = 15117729;
-    String expectedMessage = "Unable to find the product.";
-    when(productResourceService.getProduct(id)).thenThrow(new EntityNotFoundException(expectedMessage));
+    when(productResourceService.getProduct(id)).thenThrow(new EntityNotFoundException(NOT_FOUND));
     //then
-    this.mvc.perform(get("/products/{id}", id)).andExpect(status().isNotFound()).andExpect(status().reason(expectedMessage));
+    this.mvc.perform(get("/products/{id}", id)).andExpect(status().isNotFound()).andExpect(content().string(NOT_FOUND_JSON));
   }
 
   @Test
@@ -76,10 +75,9 @@ public class ProductsApiEndpointIntegrationTest {
   public void updateProductByIdNotFound() throws Exception {
     //given
     String body = "{\"id\":15117729,\"name\":\"blah\",\"current_price\":{\"value\":99.66,\"currency_code\":\"USD\"}}";
-    String expectedMessage = "Unable to find the product.";
-    doThrow(new EntityNotFoundException(expectedMessage)).when(productResourceService).updateProduct(any(ProductEntity.class));
+    doThrow(new EntityNotFoundException(NOT_FOUND)).when(productResourceService).updateProduct(any(ProductEntity.class));
     //then
-    this.mvc.perform(put("/products/{id}", 99).content(body).contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isNotFound()).andExpect(status().reason(expectedMessage));
+    this.mvc.perform(put("/products/{id}", 99).content(body).contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isNotFound()).andExpect(content().string(NOT_FOUND_JSON));
   }
 
 
