@@ -25,6 +25,7 @@ public interface ProductsApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully returned a product", response = Product.class),
         @ApiResponse(code = 400, message = "Invalid request", response = InlineResponse400.class),
+        @ApiResponse(code = 402, message = "Resource Not Found", response = InlineResponse400.class),
         @ApiResponse(code = 500, message = "Internal Server Error", response = InlineResponse400.class) })
     @RequestMapping(value = "/products/{id}",
         produces = { MediaType.APPLICATION_JSON_VALUE },
@@ -36,6 +37,7 @@ public interface ProductsApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Succesfully updated the product"),
         @ApiResponse(code = 400, message = "Invalid request", response = InlineResponse400.class),
+        @ApiResponse(code = 402, message = "Resource Not Found", response = InlineResponse400.class),
         @ApiResponse(code = 500, message = "Internal Server Error", response = InlineResponse400.class) })
     @RequestMapping(value = "/products/{id}",
         produces = { "*/*" }, 
