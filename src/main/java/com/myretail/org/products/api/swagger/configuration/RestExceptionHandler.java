@@ -2,6 +2,8 @@ package com.myretail.org.products.api.swagger.configuration;
 
 import com.myretail.org.products.api.swagger.api.NotFoundException;
 import com.myretail.org.products.api.swagger.model.InlineResponse400;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +21,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+
+  Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
 
   private static final String INTERNAL_SERVER_ERROR = "Internal Server Error, please contact your My-Retail support representative.";
 
@@ -42,12 +46,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
   @SuppressWarnings("unused")
   @ExceptionHandler(RuntimeException.class)
   protected ResponseEntity<Object> handleEntityNotFound(RuntimeException ex) {
+    logger.error("Unexpected Server Error has occurred.", ex);
     return buildResponseEntity(INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
   @SuppressWarnings("unused")
   @ExceptionHandler(NotFoundException.class)
   protected ResponseEntity<Object> handleEntityNotFound(NotFoundException ex) {
+    logger.info("Requested product not found.", ex);
     return buildResponseEntity(ex.getMessage(), HttpStatus.NOT_FOUND);
   }
 

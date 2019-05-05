@@ -5,4 +5,12 @@ public class NotFoundException extends ApiException {
     public NotFoundException(String msg) {
         super(msg);
     }
+
+    public NotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public NotFoundException(Throwable cause) {
+        super(cause);
+    }
 }

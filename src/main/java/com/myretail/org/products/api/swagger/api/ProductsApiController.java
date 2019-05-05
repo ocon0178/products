@@ -42,7 +42,7 @@ public class ProductsApiController implements ProductsApi {
     try {
       return ResponseEntity.ok(ProductResource.toResource(productService.getProduct(id)));
     } catch (EntityNotFoundException e) {
-      throw new NotFoundException(e.getMessage());
+      throw new NotFoundException(e.getMessage(), e);
     }
   }
 
@@ -50,7 +50,7 @@ public class ProductsApiController implements ProductsApi {
     try {
       productService.updateProduct(ProductResource.toDomain(body));
     } catch (EntityNotFoundException e) {
-      throw new NotFoundException(e.getMessage());
+      throw new NotFoundException(e.getMessage(), e);
     }
     return new ResponseEntity<>(HttpStatus.OK);
   }
