@@ -34,6 +34,7 @@ public class ProductsApiEndpointIntegrationTest {
 
   @MockBean
   private IProductResourceService productResourceService;
+  private static final String UNEXPECTED_SERVER_ERROR = "{\"message\":\"Unexpected server error.  Please contact your system admin.\"}";
   private static final String NOT_FOUND = "Unable to find the product.";
   private static final String NOT_FOUND_JSON = "{\"message\":\"" + NOT_FOUND + "\"}";
 
@@ -80,6 +81,22 @@ public class ProductsApiEndpointIntegrationTest {
     this.mvc.perform(put("/products/{id}", 99).content(body).contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isNotFound()).andExpect(content().string(NOT_FOUND_JSON));
   }
 
+  @Test
+  public void getProductByIdServerError() throws Exception {
+    //given
+    int id = 1;
+    doThrow(new RuntimeException()).when(productResourceService).getProduct(id);
+    //then
+    this.mvc.perform(get("/products/{id}", id)).andExpect(status().is5xxServerError()).andExpect(content().string(UNEXPECTED_SERVER_ERROR));
+  }
 
+  @Test
+  public void updateProductByIdServerError() throws Exception {
+    //given
+    String body = "{\"id\":15117729,\"name\":\"blah\",\"current_price\":{\"value\":99.66,\"currency_code\":\"USD\"}}";
+    doThrow(new RuntimeException()).when(productResourceService).updateProduct(any(ProductEntity.class));
+    //then
+    this.mvc.perform(put("/products/{id}", 99).content(body).contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is5xxServerError()).andExpect(content().string(UNEXPECTED_SERVER_ERROR));
+  }
 
 }

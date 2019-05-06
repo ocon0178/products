@@ -22,9 +22,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-  Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
+  private Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
 
-  private static final String INTERNAL_SERVER_ERROR = "Internal Server Error, please contact your My-Retail support representative.";
+  private static final String INTERNAL_SERVER_ERROR = "Unexpected server error.  Please contact your system admin.";
 
   @Override
   protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
