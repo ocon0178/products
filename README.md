@@ -59,6 +59,11 @@ spring.data.mongodb.database=products
 * Documentation for the API is available at /myretail/1.0/
 * The Documentation has full usage details
 * Built in 'Try it out!' feature can be used to test or use your favorite REST client
+## Test Suite
+* Run unit/integration test suite with the following command
+```
+.\gradlew test --rerun-tasks
+```
 ## Roadmap
 * Security
 * Container definition and image publishing
