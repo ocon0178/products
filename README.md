@@ -58,7 +58,7 @@ spring.data.mongodb.database=products
 ## Documentation and Usage
 * Documentation for the API is available at /myretail/1.0/
 * The Documentation has full usage details
-* Built in 'Try it out!' feature can be used to test
+* Built in 'Try it out!' feature can be used to test or use your favorite REST client
 ## Roadmap
 * Security
 * Container definition and image publishing
