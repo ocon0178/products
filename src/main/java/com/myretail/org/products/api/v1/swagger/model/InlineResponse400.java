@@ -1,4 +1,4 @@
-package com.myretail.org.products.api.swagger.model;
+package com.myretail.org.products.api.v1.swagger.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;

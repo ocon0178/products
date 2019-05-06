@@ -1,7 +1,7 @@
-package com.myretail.org.products.api.swagger.resources;
+package com.myretail.org.products.api.v1.swagger.resources;
 
-import com.myretail.org.products.api.swagger.model.Product;
-import com.myretail.org.products.api.swagger.model.ProductCurrentPrice;
+import com.myretail.org.products.api.v1.swagger.model.Product;
+import com.myretail.org.products.api.v1.swagger.model.ProductCurrentPrice;
 import com.myretail.org.products.domain.CurrencyCode;
 import com.myretail.org.products.domain.Price;
 import com.myretail.org.products.domain.ProductEntity;

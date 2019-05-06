@@ -1,4 +1,4 @@
-package com.myretail.org.products.api;
+package com.myretail.org.products.api.v1;
 
 import com.myretail.org.products.domain.EntityNotFoundException;
 import com.myretail.org.products.domain.ProductEntity;

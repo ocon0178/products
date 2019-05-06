@@ -1,4 +1,4 @@
-package com.myretail.org.products.api.swagger.configuration;
+package com.myretail.org.products.api.v1.swagger.configuration;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonTokenId;

@@ -1,4 +1,4 @@
-package com.myretail.org.products.api.swagger.api;
+package com.myretail.org.products.api.v1.swagger.api;
 
 import java.io.IOException;
 

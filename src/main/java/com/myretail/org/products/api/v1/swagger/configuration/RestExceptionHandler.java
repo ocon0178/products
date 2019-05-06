@@ -1,7 +1,7 @@
-package com.myretail.org.products.api.swagger.configuration;
+package com.myretail.org.products.api.v1.swagger.configuration;
 
-import com.myretail.org.products.api.swagger.api.NotFoundException;
-import com.myretail.org.products.api.swagger.model.InlineResponse400;
+import com.myretail.org.products.api.v1.swagger.api.NotFoundException;
+import com.myretail.org.products.api.v1.swagger.model.InlineResponse400;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;

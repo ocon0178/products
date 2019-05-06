@@ -1,4 +1,4 @@
-package com.myretail.org.products.api.swagger.configuration;
+package com.myretail.org.products.api.v1.swagger.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +34,7 @@ public class SwaggerDocumentationConfig {
     public Docket customImplementation(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("com.myretail.org.products.api.swagger.api"))
+                    .apis(RequestHandlerSelectors.basePackage("com.myretail.org.products.api.v1.swagger.api"))
                     .build()
                 .directModelSubstitute(org.threeten.bp.LocalDate.class, java.sql.Date.class)
                 .directModelSubstitute(org.threeten.bp.OffsetDateTime.class, java.util.Date.class)

@@ -1,9 +1,9 @@
-package com.myretail.org.products.api.swagger.api;
+package com.myretail.org.products.api.v1.swagger.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.myretail.org.products.api.IProductResourceService;
-import com.myretail.org.products.api.swagger.model.Product;
-import com.myretail.org.products.api.swagger.resources.ProductResource;
+import com.myretail.org.products.api.v1.IProductResourceService;
+import com.myretail.org.products.api.v1.swagger.model.Product;
+import com.myretail.org.products.api.v1.swagger.resources.ProductResource;
 import com.myretail.org.products.domain.EntityNotFoundException;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
-package com.myretail.org.products.api.swagger.api;
+package com.myretail.org.products.api.v1.swagger.api;
 
-import com.myretail.org.products.api.IProductResourceService;
+import com.myretail.org.products.api.v1.IProductResourceService;
 import com.myretail.org.products.domain.CurrencyCode;
 import com.myretail.org.products.domain.EntityNotFoundException;
 import com.myretail.org.products.domain.Price;

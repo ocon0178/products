@@ -1,7 +1,7 @@
 package com.myretail.org.products.domain;
 
 
-import com.myretail.org.products.api.IProductResourceService;
+import com.myretail.org.products.api.v1.IProductResourceService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,8 +1,8 @@
 
-package com.myretail.org.products.api.swagger.api;
+package com.myretail.org.products.api.v1.swagger.api;
 
-import com.myretail.org.products.api.swagger.model.InlineResponse400;
-import com.myretail.org.products.api.swagger.model.Product;
+import com.myretail.org.products.api.v1.swagger.model.InlineResponse400;
+import com.myretail.org.products.api.v1.swagger.model.Product;
 import io.swagger.annotations.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
