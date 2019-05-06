@@ -30,22 +30,6 @@ java -jar ../target/products-0.0.1-SNAPSHOT.jar
 * Defaults:
     * Mongo host: localhost
     * Mongo port: 27017 
-```properties
-server.servlet.context-path=/myretail/1.0
-server.port=8080
-
-redsky.url=https://redsky.target.com/v2/pdp/tcin/{id}
-
-logging.path=C:\\temp\\productserver\\log
-#logging.config to point to external log file
-
-spring.data.mongodb.database=products
-#spring.data.mongodb.host=localhost
-#spring.data.mongodb.username=
-#spring.data.mongodb.password=
-#spring.data.mongodb.port=27017
-
-```
 * application.properties:
     * Internal configuration can be configured prior to building the jar at /projectroot/src/main/resources/application properties
     * External configuration directory can be specified as a system property with the following syntax.  The configured directory will be consulted for application.properties files.
