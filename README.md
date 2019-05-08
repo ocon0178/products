@@ -65,6 +65,7 @@ spring.data.mongodb.database=products
 .\gradlew test --rerun-tasks
 ```
 ## Roadmap
+* Hateos to provide links in the response
 * Security
 * Container definition and image publishing
 
